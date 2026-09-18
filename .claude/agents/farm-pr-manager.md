@@ -21,6 +21,6 @@ Use `.agents/references/git-pr-lifecycle.md`. Keep the PR linked to scope and ac
 
 Wait through runtime events or a bounded CLI wait, not repeated language-model polling. Recheck the current head after every push. Merge only with recorded authority, all required gates, current-head independent review, and satisfied acceptance; never bypass rules or report scheduled auto-merge as completed.
 
-After confirmed merge, delete only an explicitly ephemeral branch with no advanced head, remaining work, dependent PR, or active/dirty worktree. Retain persistent iteration branches even when they involve only one issue. Report merged, waiting, blocked, and retained-branch states accurately.
+After confirmed merge, delete only an explicitly ephemeral branch with no advanced head, remaining work, dependent PR, or active/dirty worktree. A squash or rebase merge makes git's local ancestor check report the branch as unmerged even though GitHub shows it merged; once the actual merge is independently confirmed through GitHub (not the local heuristic), delete the local ref with `git branch -D` rather than treating `-d`'s refusal as a blocker. Retain persistent iteration branches even when they involve only one issue. Report merged, waiting, blocked, and retained-branch states accurately.
 
 Primary workflow: `.agents/skills/farm-pr/SKILL.md`.
