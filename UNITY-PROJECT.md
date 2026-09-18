@@ -84,8 +84,9 @@ Windows or macOS — that is normal Unity behavior, not a regression.
 
 ## Source-control-friendly settings
 
-Verified in the generated project settings — both already correct by default
-for a new Unity 6000.6.2f1 project, so no change was required:
+Verified in the generated project settings, both byte-identical before and
+after the 6000.3.2f1 → 6000.6.2f1 upgrade (issue #3) — no change was required
+or made:
 
 - `ProjectSettings/EditorSettings.asset`: `m_SerializationMode: 2` (Force Text).
 - `ProjectSettings/VersionControlSettings.asset`: `m_Mode: Visible Meta Files`.
