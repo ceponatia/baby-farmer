@@ -63,7 +63,7 @@ scripts/
 setup-issues/                     Two ready-to-file bootstrap issue bodies
 SETUP.md                          Installation and native smoke-test gates
 VALIDATION.md                     Actual local results and untested boundaries
-Assets/, Packages/, ProjectSettings/  Minimal Unity 6000.3.2f1 project bootstrap (issue #1)
+Assets/, Packages/, ProjectSettings/  Minimal Unity 6000.6.2f1 project bootstrap (issue #1)
 UNITY-PROJECT.md                  Exact Unity version, how to open the project, how to run its tests
 ```
 
