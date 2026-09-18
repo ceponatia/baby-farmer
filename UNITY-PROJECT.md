@@ -4,6 +4,10 @@ This describes what is actually implemented in this repository right now —
 a minimal Unity project bootstrap. It is not the pre-production planning pack
 in `docs/` (a proposal), and it does not implement gameplay.
 
+This bootstrap was authorized by [issue #1](https://github.com/ceponatia/baby-farmer/issues/1),
+which itself does **not** constitute acceptance of the Unity engine decision —
+`docs/02-engine-decision.md` remains a proposal, unresolved by this task.
+
 ## Exact version
 
 **Unity Editor 6000.3.2f1**, installed locally via Unity Hub. Use this exact
@@ -23,9 +27,10 @@ version; do not assume a different Unity 6 release behaves identically.
 
 ## Running the currently available tests
 
-Both commands below were actually run against this repository and returned
-exit code `0` with all tests passing. Adjust `-projectPath` for your local
-clone.
+Adjust `-projectPath` for your local clone. Actual run results (exit codes,
+pass counts, exact commit SHA) are recorded as completion evidence on
+[issue #1](https://github.com/ceponatia/baby-farmer/issues/1)/the PR, not
+duplicated here — this section only documents the commands themselves.
 
 ```bash
 # Domain-level EditMode smoke test (BabyFarmer.Domain.Tests)
@@ -70,6 +75,12 @@ Packages/manifest.json  Only the platform SDK/toolchain modules Unity's project 
                          plus com.unity.test-framework. No speculative/feature packages
                          (e.g. Multiplayer Center) were kept.
 ```
+
+`com.unity.sdk.linux-x86_64` and `com.unity.toolchain.linux-x86_64-linux` in
+`Packages/manifest.json` were added by this machine's Linux Editor for its
+own platform SDK/toolchain, not chosen deliberately. Expect manifest churn
+(different platform module entries) if this project is next opened on
+Windows or macOS — that is normal Unity behavior, not a regression.
 
 ## Source-control-friendly settings
 
