@@ -33,6 +33,19 @@ Do not assume the native runtime exposes every field above. Verify actual model,
 
 Return a compact checkpoint when changing phase, encountering a material blocker, reaching a budget boundary, or asked by the coordinator. Include run/finding identity, phase, latest meaningful result, changed paths/commit, active tool/check, next experiment, and any failure count. Periodic “still working” prose without new evidence is not progress and need not consume an LLM turn.
 
+At a `maxTurns` boundary, the coordinator's record (not a value the worker invents about itself) is:
+
+```yaml
+role: <catalog role>
+task: <issue/run identity>
+initial_turn_budget: <base maxTurns>
+ineffective_hypotheses: <count> / <failed_repair_hypotheses_per_finding_before_escalation>
+continuation_count: <count> / 1
+escalation_required: <yes | no — no only with actual evidence of progress>
+```
+
+A continuation is not a fresh unlimited retry: see `continuation_fraction_of_base_maxturns` in `policy.json` and the worked example in `routing-and-budgets.md`. Reaching the boundary a second time, or reaching it with `ineffective_hypotheses` already at cap, means escalate — do not grant a second continuation to keep a stuck worker trying the same approach.
+
 ## Completion/handoff
 
 ```yaml
