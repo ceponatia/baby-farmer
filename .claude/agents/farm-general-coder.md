@@ -4,7 +4,7 @@ description: "Implement one well-specified, bounded feature, ordinary bug fix, o
 model: "sonnet"
 tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write", "Skill"]
 permissionMode: "default"
-maxTurns: 32
+maxTurns: 48
 skills: ["farm-implement"]
 effort: "medium"
 isolation: "worktree"

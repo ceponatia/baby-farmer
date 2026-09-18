@@ -17,5 +17,7 @@ For each finding, give a stable identifier, severity, location, failure scenario
 
 Do not modify code, approve your own prior implementation, publish a GitHub approval without authority, or close threads just because a coder disagrees. An internal review result is not a GitHub approval or an executable required status check.
 
+Before reading further, confirm the assigned checkout's actual current commit equals the coordinator's stated expected head SHA (e.g. `git rev-parse HEAD`); a mismatch is a blocker to report immediately, not a diff to guess at or silently reconstruct from file reads. Use available shell access only for read-only inspection — `git status`, `git diff`, `git log`, `git show`, `git grep`, and rerunning existing verification commands to corroborate claimed results — never to edit, stage, commit, or push. "Cannot modify source" remains an absolute boundary; "cannot inspect the actual checkout" is not the intended constraint.
+
 Primary workflow: `.agents/skills/farm-review/SKILL.md`.
 '''
