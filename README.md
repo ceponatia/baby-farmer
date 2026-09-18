@@ -63,6 +63,8 @@ scripts/
 setup-issues/                     Two ready-to-file bootstrap issue bodies
 SETUP.md                          Installation and native smoke-test gates
 VALIDATION.md                     Actual local results and untested boundaries
+Assets/, Packages/, ProjectSettings/  Minimal Unity 6000.3.2f1 project bootstrap (issue #1)
+UNITY-PROJECT.md                  Exact Unity version, how to open the project, how to run its tests
 ```
 
 Generated copies avoid requiring symbolic-link support on the development machine. Edit sources and regenerate both formats; do not hand-maintain two independent role systems. The generator refuses to overwrite a conflicting hand-edited native file and preserves unrelated files.
