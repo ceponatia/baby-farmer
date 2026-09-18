@@ -1,0 +1,162 @@
+# baby-farmer .gitignore
+#
+# IMPORTANT:
+# Do not globally ignore Unity *.meta files. Asset .meta files must remain
+# under source control. Meta files associated with generated/ignored files
+# may be ignored alongside those files.
+
+
+# -----------------------------------------------------------------------------
+# Unity generated/local state
+# -----------------------------------------------------------------------------
+
+/.utmp/
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+*.log
+mono_crash.*
+
+
+# -----------------------------------------------------------------------------
+# Unity / IDE generated project files
+# -----------------------------------------------------------------------------
+
+/ExportedObj/
+/.consulo/
+
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+*.DotSettings.user
+
+sysinfo.txt
+crashlytics-build.properties
+
+
+# -----------------------------------------------------------------------------
+# Unity generated editor/package content
+# -----------------------------------------------------------------------------
+
+# Auto-generated JetBrains Rider integration
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# Unity Test Runner generated scenes
+/InitTestScene*.unity*
+/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Addressables generated data
+/ServerData/
+/[Aa]ssets/StreamingAssets/aa*
+/[Aa]ssets/AddressableAssetsData/link.xml*
+/[Aa]ssets/Addressables_Temp*
+/[Aa]ssets/AddressableAssetsData/*/*.bin*
+
+# Visual Scripting generated files
+/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
+/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
+/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
+/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+
+# UI Toolkit generated schemas
+/UIElementsSchema/
+
+# Unity-generated scene dependency caches
+/[Aa]ssets/[Ss]ceneDependencyCache*
+
+
+# -----------------------------------------------------------------------------
+# Unity build/package artifacts
+# -----------------------------------------------------------------------------
+
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+
+
+# -----------------------------------------------------------------------------
+# IDE/editor local state
+# -----------------------------------------------------------------------------
+
+.vs/
+.idea/
+.gradle/
+
+# Ignore personal VS Code state, but allow useful shared project configuration.
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+
+# -----------------------------------------------------------------------------
+# Agent workflow runtime state
+# -----------------------------------------------------------------------------
+
+.agent-runs/
+.worktrees/
+.codex/worktrees/
+.claude/worktrees/
+
+# -----------------------------------------------------------------------------
+# Python tooling
+# -----------------------------------------------------------------------------
+
+__pycache__/
+*.py[cod]
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+.coverage
+.coverage.*
+htmlcov/
+
+.venv/
+venv/
+
+
+# -----------------------------------------------------------------------------
+# Local configuration / secrets
+# -----------------------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+
+
+# -----------------------------------------------------------------------------
+# OS cruft
+# -----------------------------------------------------------------------------
+
+.DS_Store
+Thumbs.db
+Desktop.ini
