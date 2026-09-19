@@ -6,7 +6,7 @@ namespace BabyFarmer.Presentation
     /// Translates physical input (the legacy Input Manager,
     /// <c>UnityEngine.Input</c>) into plain movement/interact intent every
     /// frame. This is the one place that calls <c>Input.GetAxisRaw</c> /
-    /// <c>Input.GetButtonDown</c> in the whole project — swapping input
+    /// <c>Input.GetKeyDown</c> in the whole project — swapping input
     /// backends (e.g. the Input System package, once approved) only requires
     /// changing this class. It contains no gameplay rules: no collision, no
     /// interaction targeting, no state mutation.

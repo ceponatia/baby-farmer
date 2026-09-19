@@ -25,7 +25,13 @@ namespace BabyFarmer.Presentation.Tests
             Assert.IsNotNull(player, "Expected a PlayerController in the Sandbox scene.");
             Assert.IsNotNull(obstacle, "Expected an Obstacle in the Sandbox scene.");
 
+            // Remove the real input reader so the headless-batch-mode "no key
+            // is ever pressed" intent (Vector2.zero) doesn't overwrite the
+            // intent this test drives directly every Update().
+            RemoveInputReader(player);
+
             var obstacleSouthEdgeZ = obstacle.GetComponent<Collider>().bounds.min.z;
+            var startZ = player.transform.position.z;
 
             player.SetMovementIntent(new Vector2(0f, 1f));
 
@@ -36,16 +42,22 @@ namespace BabyFarmer.Presentation.Tests
 
             player.SetMovementIntent(Vector2.zero);
 
+            var finalZ = player.transform.position.z;
+
+            Assert.Greater(
+                finalZ,
+                startZ + 0.5f,
+                $"Player should have actually moved north from its spawn (start z={startZ}, final z={finalZ}).");
             Assert.Less(
-                player.transform.position.z,
+                finalZ,
                 obstacleSouthEdgeZ,
-                "Player should be blocked by the obstacle's collider before reaching it.");
+                $"Player should be blocked by the obstacle's collider before reaching it (obstacle south edge z={obstacleSouthEdgeZ}, final z={finalZ}).");
 
             LogAssert.NoUnexpectedReceived();
         }
 
         [UnityTest]
-        public IEnumerator PlayerController_DummyInteraction_SucceedsInFrontAndFailsOutOfRange()
+        public IEnumerator PlayerController_DummyInteraction_SucceedsInFrontAndFailsWhenInvalid()
         {
             yield return SandboxSceneLoader.Load();
             yield return null;
@@ -55,17 +67,36 @@ namespace BabyFarmer.Presentation.Tests
             Assert.IsNotNull(player, "Expected a PlayerController in the Sandbox scene.");
             Assert.IsNotNull(dummy, "Expected a DummyInteractable in the Sandbox scene.");
 
-            // Out of range: teleport far away from the dummy, face north, and interact.
-            player.transform.position = new Vector3(50f, player.transform.position.y, 50f);
+            var dummyPosition = dummy.transform.position;
+            var playerY = player.transform.position.y;
+
+            // Out of range: far from the dummy entirely (also behind the player,
+            // covering the "nowhere near" case).
+            player.transform.position = new Vector3(50f, playerY, 50f);
             player.SetMovementIntent(new Vector2(0f, 1f));
             player.SetMovementIntent(Vector2.zero);
             player.RequestInteract();
 
-            Assert.IsFalse(dummy.WasInteracted, "Dummy should not be interactable from out of range.");
+            Assert.IsFalse(dummy.WasInteracted, "Dummy should not be interactable from far away.");
+
+            // In front (same lane, facing it) but beyond interactionRange (1.25).
+            player.transform.position = new Vector3(dummyPosition.x, playerY, dummyPosition.z - 5f);
+            player.SetMovementIntent(new Vector2(0f, 1f));
+            player.SetMovementIntent(Vector2.zero);
+            player.RequestInteract();
+
+            Assert.IsFalse(dummy.WasInteracted, "Dummy should not be interactable when in front but beyond range.");
+
+            // In range, directly south of the dummy, but facing the wrong way (south instead of north).
+            player.transform.position = new Vector3(dummyPosition.x, playerY, dummyPosition.z - 1f);
+            player.SetMovementIntent(new Vector2(0f, -1f));
+            player.SetMovementIntent(Vector2.zero);
+            player.RequestInteract();
+
+            Assert.IsFalse(dummy.WasInteracted, "Dummy should not be interactable when the player is not facing it.");
 
             // In range and facing it: stand one unit south of the dummy, facing north.
-            var dummyPosition = dummy.transform.position;
-            player.transform.position = new Vector3(dummyPosition.x, player.transform.position.y, dummyPosition.z - 1f);
+            player.transform.position = new Vector3(dummyPosition.x, playerY, dummyPosition.z - 1f);
             player.SetMovementIntent(new Vector2(0f, 1f));
             player.SetMovementIntent(Vector2.zero);
             player.RequestInteract();
@@ -74,6 +105,15 @@ namespace BabyFarmer.Presentation.Tests
             Assert.AreEqual(1, dummy.InteractionCount, "Exactly one interaction should be produced per interaction request.");
 
             LogAssert.NoUnexpectedReceived();
+        }
+
+        private static void RemoveInputReader(PlayerController player)
+        {
+            var reader = player.GetComponent<PlayerInputReader>();
+            if (reader != null)
+            {
+                Object.DestroyImmediate(reader);
+            }
         }
     }
 }
