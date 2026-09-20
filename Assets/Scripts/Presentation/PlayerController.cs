@@ -34,8 +34,9 @@ namespace BabyFarmer.Presentation
         /// <summary>
         /// Current movement intent (x = east/west, y = north/south). May have
         /// both axes simultaneously non-zero for diagonal movement; velocity
-        /// is derived from this by normalizing to <see cref="moveSpeed"/> so
-        /// diagonal movement is not faster than cardinal movement.
+        /// is derived from this by clamping its magnitude to at most 1 before
+        /// scaling by <see cref="moveSpeed"/>, so diagonal movement is not
+        /// faster than cardinal movement.
         /// </summary>
         public Vector2 MovementIntent { get; private set; }
 

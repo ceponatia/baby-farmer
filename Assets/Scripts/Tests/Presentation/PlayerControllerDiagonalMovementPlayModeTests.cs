@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -46,6 +47,20 @@ namespace BabyFarmer.Presentation.Tests
 
             player.SetMovementIntent(Vector2.zero);
 
+            // Anchor cardinalSpeed itself against the PlayerController's
+            // actually configured moveSpeed, not just against diagonalSpeed:
+            // otherwise this assertion would pass vacuously if a regression
+            // zeroed moveSpeed or made SetMovementIntent a no-op (both
+            // cardinalSpeed and diagonalSpeed would be 0 and still "equal").
+            var configuredMoveSpeed = (float)typeof(PlayerController)
+                .GetField("moveSpeed", BindingFlags.Instance | BindingFlags.NonPublic)
+                .GetValue(player);
+
+            Assert.AreEqual(
+                configuredMoveSpeed,
+                cardinalSpeed,
+                0.01f,
+                $"Cardinal movement speed should match the configured moveSpeed (configured={configuredMoveSpeed}, actual={cardinalSpeed}).");
             Assert.AreEqual(
                 cardinalSpeed,
                 diagonalSpeed,

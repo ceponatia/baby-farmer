@@ -54,13 +54,15 @@ namespace BabyFarmer.Domain.Tests
 
         [TestCase(FacingDirection.North)]
         [TestCase(FacingDirection.East)]
-        public void Resolve_OppositeAxisInputsCancelToZero_PersistsFacingInsteadOfResolvingDiagonal(FacingDirection current)
+        public void Resolve_ZeroIntent_PersistsFacingRegardlessOfStartingFacing(FacingDirection current)
         {
-            // Simulates PlayerInputReader's Input.GetAxisRaw("Horizontal"/"Vertical")
-            // already returning 0 when both a positive and negative binding on the
-            // same axis are held simultaneously (e.g. A+D, or Left+Right, or
-            // Up+Down): the net intent on that axis is zero, so facing should
-            // persist rather than resolve to an unintended direction.
+            // Confirms the zero-intent persistence rule holds from multiple
+            // starting facings, not just one (Resolve_PersistsCurrentFacingWhenIntentStops
+            // covers a single case). Note this only exercises FacingResolver
+            // itself with a (0, 0) intent; it does not exercise
+            // PlayerInputReader's Input.GetAxisRaw opposite-key cancellation
+            // (e.g. Left+Right both held), which happens upstream of this
+            // resolver and isn't reachable from a Domain-level test.
             var result = FacingResolver.Resolve(current, 0f, 0f);
 
             Assert.AreEqual(current, result);
