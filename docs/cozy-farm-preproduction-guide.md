@@ -468,7 +468,7 @@ Validate these values in a composite scene before producing a cast. They are des
 | Ground grid | 16×16 pixel tiles | Whether a 32×32 grid is materially easier to produce consistently |
 | Character scale | Approximately 16×32 visible silhouette | Actual supported generation canvas and cleanup/cropping method |
 | Canvas | A consistent larger transparent action canvas with a fixed foot anchor | Maximum tool reach; no clipping in any action |
-| Directions | Four displayed cardinal facings | How diagonal movement chooses facing |
+| Directions | Four displayed cardinal facings | Resolved: diagonal movement reuses the four existing displayed facings; facing resolves to East for a positive (rightward) horizontal component and West for a negative (leftward) horizontal component (issue #9) |
 | Palette | One small, approved palette with defined material ramps | Skin, foliage, soil, UI, shadow, and highlight conventions |
 | Lighting | One consistent baked light direction; restrained engine lighting | Prevent double lighting and contradictory shadows |
 | World viewport | Trial 480×270 logical pixels | Integer scaling/letterboxing and camera readability at target displays |
