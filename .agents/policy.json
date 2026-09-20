@@ -12,7 +12,11 @@
     "advanced_interventions_per_finding": 1,
     "infrastructure_retries": 1,
     "review_rounds_before_reassessment": 2,
-    "no_budget_reset_on_new_agent": true
+    "no_budget_reset_on_new_agent": true,
+    "maxturns_cap_alone_is_not_an_escalation_signal": true,
+    "routine_worker_continuation_requires_progress_evidence": true,
+    "continuation_fraction_of_base_maxturns": 0.33,
+    "environment_launch_failure_retry_same_role_before_fallback": true
   },
   "supervision": {
     "routine_no_progress_soft_minutes": 12,
