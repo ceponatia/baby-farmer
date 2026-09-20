@@ -185,6 +185,19 @@ class GenerationTests(unittest.TestCase):
         self.assertEqual(cl['tools'], ['Read', 'Grep', 'Glob'])
         self.assertEqual(cx['sandbox_mode'], 'read-only')
 
+    def test_committed_reviewer_output_matches_security_boundary(self):
+        """Security-boundary regression test on the actually-committed
+        files (not the temp-generated copy under self.root). A hand-edit
+        directly to the checked-in .claude/agents/farm-reviewer.md or
+        .codex/agents/farm-reviewer.toml that bypasses the generator (e.g.
+        silently re-adding Bash or Skill) would not be caught by the
+        temp-root tests above; only `sync_agents.py --check` catches that,
+        and nothing runs it automatically. This test closes that gap."""
+        cl = frontmatter((ROOT / '.claude/agents/farm-reviewer.md').read_text())
+        cx = tomllib.loads((ROOT / '.codex/agents/farm-reviewer.toml').read_text())
+        self.assertEqual(cl['tools'], ['Read', 'Grep', 'Glob'])
+        self.assertEqual(cx['sandbox_mode'], 'read-only')
+
 
 if __name__ == '__main__':
     unittest.main()
