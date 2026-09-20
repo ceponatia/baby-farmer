@@ -2,7 +2,7 @@
 
 ## The goal is repeatable acceptance, not one impressive image
 
-Use PixelLab to generate candidates, Aseprite to inspect and organize approved art, and Unity to display and animate it. PixelLab documents editor integration and cloud-based generation; the workflow does not require running an image model on the development GPU. [S10, S14]
+Use **PixelLab through its MCP integration** as the primary generation interface for character, animation, object, and tileset candidate art; use **Aseprite for inspection, cleanup, alignment, and manual refinement**; and use Unity to display and animate approved assets. The intended workflow is agent-assisted generation through PixelLab MCP followed by human review and manual correction when needed, not fully autonomous asset production. PixelLab's cloud workflow means this does not require running an image model on the development GPU. [S10, S11, S14]
 
 Not being able to draw does not prevent choosing a silhouette, rejecting a bad loop, shifting a frame, correcting a stray pixel, or using a licensed base pack. Plan for those editing tasks. Budget optional specialist help for a small set of master assets when repeated AI correction is more expensive than focused human work.
 
@@ -24,15 +24,29 @@ Validate these values in a composite scene before producing a cast. They are des
 
 A 16×32 silhouette does **not** mean every generator accepts a 16×32 request or produces that exact occupied area. Check the selected model's canvas constraints and measure its output. Crop or pad losslessly; do not blindly downsample a large illustration and call it game-ready.
 
+## Operating model: PixelLab MCP first, manual refinement second
+
+The default production path is:
+
+1. Prepare an approved asset brief and reference set.
+2. Use **PixelLab MCP** to generate candidate art or animation from those approved references.
+3. Review returned candidates against the project's golden set and gameplay requirements.
+4. If a result is acceptable as-is, move it directly to validation and import.
+5. If a result is close but imperfect, perform **manual refinement in Aseprite**: cleanup, frame alignment, anchor correction, stray-pixel fixes, palette adjustment, loop cleanup, or small redraws.
+6. Only approved and validated outputs become project assets.
+
+This is a **hybrid workflow**. PixelLab MCP is the preferred generation interface; human judgment remains the approval gate. Do not assume a generated sheet is production-ready merely because it exists.
+
 ## Asset flow
 
 ```mermaid
 flowchart LR
-    Brief[Asset brief and approved references] --> Candidate[PixelLab candidate batch]
-    Candidate --> Inspect[Contact sheet and loop review]
-    Inspect -->|reject or revise| Candidate
-    Inspect --> Edit[Aseprite cleanup and tags]
-    Edit --> Validate[Deterministic checks and manifest]
+    Brief[Asset brief and approved references] --> MCP[PixelLab MCP generation]
+    MCP --> Inspect[Contact sheet / loop / consistency review]
+    Inspect -->|reject or revise brief/settings| MCP
+    Inspect -->|close but imperfect| Edit[Aseprite manual refinement]
+    Inspect -->|acceptable as-is| Validate[Deterministic checks and manifest]
+    Edit --> Validate
     Validate --> Import[Unity import and bindings]
     Import --> Scene[In-game acceptance scene]
     Scene --> Approved[Versioned approved asset]
@@ -50,7 +64,7 @@ Skeleton-conditioned generation produces image frames; do not assume the result 
 
 ## First art feasibility batch
 
-Produce one original player, one NPC, grass/soil/path transitions, one crop's growth stages, one tool, and one processing object. The player needs idle, walk, and the three relevant farming actions in the displayed directions. The NPC needs only idle/walk and an interaction pose if necessary.
+Produce one original player, one NPC, grass/soil/path transitions, one crop's growth stages, one tool, and one processing object. Generate the initial candidates through **PixelLab MCP**, not through an ad hoc unrelated image workflow. The player needs idle, walk, and the three relevant farming actions in the displayed directions. The NPC needs only idle/walk and an interaction pose if necessary. Expect some outputs to require **manual refinement in Aseprite** before they are accepted.
 
 Compare everything **together**, at intended display size. A sprite that looks attractive in isolation can be unusable because its scale, perspective, palette, or contact point differs from the rest.
 
@@ -63,6 +77,8 @@ Inspect silhouette, head/body ratio, clothing details, handedness, visible tool 
 Review animations as loops and as individual frames. Check planted feet, unintended body translation, changing limb lengths, disappearing accessories, unexpected extra frames, and first/last-frame discontinuities. Do not use smoothing or frame interpolation that destroys the approved pixel grid.
 
 Four directions are a production choice: diagonal movement can still exist. Eight-direction artwork is not automatically required for eight-direction input.
+
+Generated consistency is a goal, not a guarantee. Even when using one retained reference character, treat face shape, clothing detail, limb proportion, handedness, and foot placement as review items. If an animation is structurally correct but visually inconsistent, prefer **manual cleanup of an approved near-miss** over regenerating large batches without direction.
 
 ## Gameplay animation contract
 
@@ -87,6 +103,18 @@ Proposed baseline: preserve approved `.aseprite` sources under Unity's art direc
 Aseprite's CLI supports repeatable exports and metadata, which is useful for inspection images and validation. A PNG+metadata export pipeline is the fallback when direct import proves unreliable; choose one authoritative import path per asset family. [S17]
 
 Use common pixels-per-unit, point sampling, no unintended compression, and intentional pivots. Unity's Pixel Perfect guidance documents these preparations. Validate the chosen render-pipeline/package combination instead of assuming settings from an older tutorial are identical. [S07]
+
+## Agent-assisted use
+
+PixelLab MCP is intended to be usable by development agents for bounded tasks such as:
+
+- generating candidate character rotations or animation sheets from an approved reference,
+- exporting frames or spritesheets,
+- preserving provider job IDs and submitted settings,
+- producing contact sheets for review,
+- organizing candidate outputs into the project's asset structure.
+
+Agents are **not** the final acceptance authority for art quality. Human review remains responsible for approving style, readability, character consistency, animation feel, and gameplay fit.
 
 ## Asset records and acceptance
 

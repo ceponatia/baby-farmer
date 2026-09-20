@@ -69,6 +69,10 @@ UNITY-PROJECT.md                  Exact Unity version, how to open the project, 
 
 Generated copies avoid requiring symbolic-link support on the development machine. Edit sources and regenerate both formats; do not hand-maintain two independent role systems. The generator refuses to overwrite a conflicting hand-edited native file and preserves unrelated files.
 
+## Art production workflow
+
+Visual asset production uses a **hybrid PixelLab MCP workflow**: development agents may generate and organize candidate characters, animations, terrain, and objects through PixelLab MCP; human review decides what is acceptable; and close-but-imperfect candidates are manually refined in **Aseprite** before Unity import and in-game acceptance. Generation is intentionally not treated as autonomous final art production.
+
 ## Recommended issue lifecycle
 
 ```text

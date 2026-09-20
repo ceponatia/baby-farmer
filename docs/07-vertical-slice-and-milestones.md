@@ -12,9 +12,9 @@ Approve the player promise, primary platform, four-direction versus eight-direct
 
 ## Gate 1 — Prove art and tooling together
 
-Run the engine and art trials from Documents 02 and 05. Show the same approved character moving and using a tool in the engine. Demonstrate state inspection, reimport, one rule test, and a standalone build.
+Run the engine and art trials from Documents 02 and 05. Show the same approved character moving and using a tool in the engine. Specifically validate the **PixelLab MCP → human review → Aseprite refinement when needed → Unity import** path rather than testing generation in isolation. Demonstrate state inspection, reimport, one rule test, and a standalone build.
 
-**Exit:** a tiny build, version/entitlement notes, recorded acceptance defects, and a go/no-go decision. A beautiful PixelLab preview alone does not pass.
+**Exit:** a tiny build, version/entitlement notes, recorded acceptance defects, a demonstrated **PixelLab MCP plus manual-refinement pipeline**, and a go/no-go decision. A beautiful PixelLab preview alone does not pass.
 
 **Stop/revise:** if custom tool animations cannot be made coherent at a sustainable correction cost, simplify the character style/action set or change the art source before building around it.
 
