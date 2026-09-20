@@ -2,7 +2,7 @@
 name: "farm-reviewer"
 description: "Independently review a specific base/head diff for correctness, regression, security, architecture boundaries, and acceptance gaps. Read-only, fresh context; never its author or a style-nit generator."
 model: "opus"
-tools: ["Read", "Grep", "Glob", "Skill"]
+tools: ["Read", "Grep", "Glob"]
 permissionMode: "default"
 maxTurns: 36
 skills: ["farm-review"]

@@ -159,6 +159,32 @@ class GenerationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Missing skill'):
             MODULE.sync(self.root)
 
+    def test_reviewer_security_boundary_is_pinned(self):
+        """Security-boundary regression test.
+
+        The reviewer must stay read-only on both platforms: Claude's tool
+        grant must not silently regain unsandboxed shell (Bash) or the
+        generic Skill tool (which would let it load unrelated skills at
+        runtime), and Codex's sandbox_mode must not silently lose its
+        enforced read-only sandbox. Exact-list/value equality is used
+        deliberately, so an added tool, a reordering, or a loosened sandbox
+        mode all fail this test immediately.
+        """
+        reviewer = next(r for r in self.catalog()['roles'] if r['id'] == 'reviewer')
+        self.assertEqual(reviewer['claude']['tools'], ['Read', 'Grep', 'Glob'])
+        self.assertEqual(reviewer['codex']['sandbox_mode'], 'read-only')
+
+    def test_reviewer_generated_output_matches_security_boundary(self):
+        """Confirm the generator faithfully mirrors the reviewer's catalog
+        security boundary into the native outputs, so a generator bug
+        cannot silently drift the rendered agent away from the pinned
+        catalog source."""
+        reviewer = next(r for r in self.catalog()['roles'] if r['id'] == 'reviewer')
+        cl = frontmatter((self.root / '.claude/agents' / (reviewer['name']+'.md')).read_text())
+        cx = tomllib.loads((self.root / '.codex/agents' / (reviewer['name']+'.toml')).read_text())
+        self.assertEqual(cl['tools'], ['Read', 'Grep', 'Glob'])
+        self.assertEqual(cx['sandbox_mode'], 'read-only')
+
 
 if __name__ == '__main__':
     unittest.main()
