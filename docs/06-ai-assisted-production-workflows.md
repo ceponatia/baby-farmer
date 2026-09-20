@@ -26,13 +26,15 @@ Use asset dependencies: the player's scale precedes door height, furniture heigh
 
 ## 4. Sprites, terrain, objects, and UI decoration
 
-**Input:** approved asset brief and golden references. **AI work:** use the verified PixelLab interface, retain job/settings/output records, and run structural checks. **Human work:** choose candidates and perform limited cleanup or request targeted repair. **Output:** approved sources and manifests.
+**Input:** approved asset brief and golden references. **AI work:** use **PixelLab MCP as the default agent-facing generation path**, retain job/settings/output records, prepare candidate batches, and run structural checks. **Human work:** choose candidates, reject visible inconsistencies, and perform **manual refinement in Aseprite when a candidate is close but not production-ready**. **Output:** approved sources and manifests.
+
+The intended workflow is **PixelLab MCP → human review → Aseprite refinement when needed → Unity validation/import**. Agents may operate the generation and organization steps, but they are not the final authority for visual quality. Prefer targeted correction of a promising result over blind large-batch regeneration.
 
 Generated UI art should provide decorative pieces such as panels and icons. Build actual labels, buttons, focus behavior, and layout with engine UI controls. Do not bake interactive text into an image.
 
 ## 5. Animation and tool interactions
 
-**Input:** one approved character and an action contract. **AI work:** propose motion frames, normalize canvas alignment, organize tags, bind clips, and create a repeatable inspection scene. **Human work:** inspect loop quality, silhouettes, foot contact, tool contact, and feel. **Output:** animation set with timing/anchor metadata and an in-game acceptance recording.
+**Input:** one approved character and an action contract. **AI work:** use the appropriate verified PixelLab MCP animation workflow, propose or generate motion frames, normalize canvas alignment, organize tags, bind clips, and create a repeatable inspection scene. **Human work:** inspect loop quality, character drift, silhouettes, foot contact, tool contact, and feel; refine accepted near-misses manually in Aseprite when cheaper than regeneration. **Output:** animation set with timing/anchor metadata and an in-game acceptance recording.
 
 When a generator cannot reliably make a specialized action, narrow the motion, use a licensed motion/base asset, edit the critical poses, or commission that small action set. Do not redesign the whole game around unverified generation claims.
 
