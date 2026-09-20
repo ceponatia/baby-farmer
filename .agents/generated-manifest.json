@@ -12,7 +12,7 @@
     ".claude/agents/farm-orchestrator.md": "6f7bb5459822020fa9f6816efcc24b04415385fda50f757e877049e85dc36695",
     ".claude/agents/farm-pr-manager.md": "e8fbdf36791b723cdf3afb5c6f46bc902194a5a2710bd4cb1753c48222d8a5bc",
     ".claude/agents/farm-reader.md": "88bcdbf87ad4cb7ab565b5b5d244e32352d35a0f33d5491d302cd4737e648915",
-    ".claude/agents/farm-reviewer.md": "fa095e19538ba57c41c97cdbedd1fec41bbb714adcf730d4da4addce2960bebe",
+    ".claude/agents/farm-reviewer.md": "3419bca6691d0ddd81ab4b038937195470798d48660b4568290b6dee7b857add",
     ".claude/agents/farm-test-maintainer.md": "273148d88bef1c5d1a0646265079798c520e1e114258a027b765b5b918d67c5d",
     ".claude/skills/farm-architecture/SKILL.md": "91ff1d0f2e238116e06412ce4aac2231e91a5f964a8ef45f45fd002c70584eb2",
     ".claude/skills/farm-assets/SKILL.md": "23191ef2f73fb2fb2b5a6f825f513272d8771ba4a4e8c5a4c3d65e5063c7e843",
@@ -24,7 +24,7 @@
     ".claude/skills/farm-issue/SKILL.md": "66b3ea744175f252629843209517294bba317064903902b3f1582d4978f41bc9",
     ".claude/skills/farm-orchestrate/SKILL.md": "2fc72619ee74a570d466726bea9db6ce88d97d69058827c6ea724b6e8fe4b25f",
     ".claude/skills/farm-pr/SKILL.md": "077737aa48892ae5a39d5c2158dc0d633fc01f43db977c8d57c1702e227fa9a6",
-    ".claude/skills/farm-review/SKILL.md": "bfe754aebe50955f6c865520f0fb54ad4adb117031f57b5f700f40bea82b8f0e",
+    ".claude/skills/farm-review/SKILL.md": "3bb74bcbfd7f927923f3e6495f2ee98b135e71c79b84fa8ffbfe5ee099ee2eff",
     ".claude/skills/farm-test/SKILL.md": "f8bae87c497973f27bdce2adce1b3b2729362e8c99841cc07696ea2b036f4843",
     ".codex/agents/farm-advanced-coder.toml": "0b0235172c4891f25c621164d8c8ef1da6377efd52e794bf8208f3af26d9da0c",
     ".codex/agents/farm-architect.toml": "402946978e7626ed3ab56deb13ba2893dc6413e382ced3a29155d9563c8f1620",
@@ -37,7 +37,7 @@
     ".codex/agents/farm-orchestrator.toml": "ef6de5c401c9a097cd43b2a374f0a05998dcb0ad59fa1eeae7f3efe31d3365b4",
     ".codex/agents/farm-pr-manager.toml": "efdbaef1a0db2b82a270b0b4f7b2e7c53dc93a99cf38198383a4a68d3464097b",
     ".codex/agents/farm-reader.toml": "5b88f44baf0f0c70f9bb155ec60f25c34f212e0a44bb58f5ee3a4a9f196ecf77",
-    ".codex/agents/farm-reviewer.toml": "011c65f0a87799cbb4bd0b44fe787194efb5875f89d8d9d288d53e073d29da2d",
+    ".codex/agents/farm-reviewer.toml": "b706c40e251a0038cb3f60a1ec00184e184af34cc57ab6c2aad986e78b7f25d3",
     ".codex/agents/farm-test-maintainer.toml": "ccd8ad41c480d81c2ca2ebaca0b2f36b97c5c548defe7e63ecf5c5a70614f77e"
   }
 }

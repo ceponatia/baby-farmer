@@ -250,7 +250,6 @@
           "Read",
           "Grep",
           "Glob",
-          "Bash",
           "Skill"
         ],
         "permissionMode": "default",
