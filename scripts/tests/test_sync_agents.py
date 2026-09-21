@@ -1,12 +1,14 @@
 """Local structural tests; these do not launch Codex, Claude, or GitHub."""
 from __future__ import annotations
+
 import importlib.util
 import json
 import shutil
 import tempfile
-import tomllib
 import unittest
 from pathlib import Path
+
+import tomllib
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = importlib.util.spec_from_file_location("sync_agents", ROOT / "scripts/sync_agents.py")
