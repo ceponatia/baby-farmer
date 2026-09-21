@@ -15,6 +15,14 @@ python -m unittest discover -s scripts/tests -v
 
 On a system where the command is `python3`, substitute that executable. The generator performs no network calls and has no third-party package dependency. It validates its generated TOML with Python's standard library and refuses to overwrite hand-edited/untracked native files. Move legitimate changes into canonical sources, reconcile generated files, and rerun; do not solve drift by deleting source history.
 
+CI also lints and typechecks `scripts/` with `ruff` and `mypy` (CI-only tooling, not a runtime dependency of the generator). The explicit lint rule set and target Python version live in `pyproject.toml` rather than relying on ruff's implicit defaults. Install the same version floors used in CI to reproduce a run locally:
+
+```bash
+pip install "ruff>=0.6" "mypy>=1.11"
+ruff check scripts/
+mypy scripts/sync_agents.py scripts/tests/test_sync_agents.py
+```
+
 ## Canonical editing
 
 Edit `.agents/roles/*.md` for role behavior, `.agents/catalog.json` for descriptions/model/native settings, `.agents/skills/` for shared workflows, and `.agents/common.md` for shared role boundaries. Run `python scripts/sync_agents.py`; commit canonical changes and generated outputs together. Add the check/test commands to the repository's CI using the existing workflow conventions.

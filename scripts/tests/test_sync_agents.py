@@ -1,5 +1,6 @@
 """Local structural tests; these do not launch Codex, Claude, or GitHub."""
 from __future__ import annotations
+
 import importlib.util
 import json
 import shutil

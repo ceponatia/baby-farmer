@@ -5,6 +5,7 @@ Canonical inputs are .agents/catalog.json, .agents/common.md, .agents/roles,
 and .agents/skills. No provider calls or external writes are performed.
 """
 from __future__ import annotations
+
 import argparse
 import hashlib
 import json
@@ -102,7 +103,7 @@ def sync(root: Path, check: bool = False) -> list[str]:
                 raise ValueError(f"Refusing to overwrite untracked/hand-edited native file: {rel}. Reconcile it into canonical sources first.")
     for rel in stale:
         path = (root / rel).resolve()
-        if not (rel.startswith(".codex/agents/") or rel.startswith(".claude/agents/") or rel.startswith(".claude/skills/")):
+        if not rel.startswith((".codex/agents/", ".claude/agents/", ".claude/skills/")):
             raise ValueError(f"Unsafe stale manifest entry: {rel}")
         if not path.is_relative_to(root):
             raise ValueError(f"Path escape: {rel}")
