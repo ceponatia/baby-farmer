@@ -31,7 +31,13 @@ namespace BabyFarmer.Presentation
 
         private Rigidbody body;
 
-        /// <summary>Current movement intent, expressed on at most one cardinal axis (x = east/west, y = north/south).</summary>
+        /// <summary>
+        /// Current movement intent (x = east/west, y = north/south). May have
+        /// both axes simultaneously non-zero for diagonal movement; velocity
+        /// is derived from this by clamping its magnitude to at most 1 before
+        /// scaling by <see cref="moveSpeed"/>, so diagonal movement is not
+        /// faster than cardinal movement.
+        /// </summary>
         public Vector2 MovementIntent { get; private set; }
 
         /// <summary>The last non-zero movement direction; persists while intent is zero.</summary>
@@ -65,7 +71,14 @@ namespace BabyFarmer.Presentation
 
         private void FixedUpdate()
         {
-            body.linearVelocity = new Vector3(MovementIntent.x, 0f, MovementIntent.y) * moveSpeed;
+            var intent = new Vector3(MovementIntent.x, 0f, MovementIntent.y);
+
+            // Normalize so diagonal intent (both axes non-zero) moves at the
+            // same speed as cardinal intent, avoiding the classic sqrt(2)
+            // diagonal-speed advantage. ClampMagnitude leaves cardinal intent
+            // (magnitude 1) unchanged and only scales down diagonal intent
+            // (magnitude sqrt(2)).
+            body.linearVelocity = Vector3.ClampMagnitude(intent, 1f) * moveSpeed;
         }
 
         /// <summary>

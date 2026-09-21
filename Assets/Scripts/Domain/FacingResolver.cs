@@ -14,22 +14,19 @@ namespace BabyFarmer.Domain
         /// Facing persists the last non-zero movement direction: when the
         /// intent is zero (the actor is not currently trying to move), the
         /// current facing is returned unchanged rather than reset.
-        /// When both axes are non-zero (a diagonal intent, which callers in
-        /// this project should not produce), the vertical axis takes
-        /// priority, keeping the result strictly cardinal.
+        ///
+        /// When both axes are non-zero (a diagonal intent), the horizontal
+        /// axis takes priority for facing purposes: a positive
+        /// <paramref name="intentX"/> resolves to East, a negative one
+        /// resolves to West, regardless of the vertical component. This is
+        /// the accepted diagonal facing rule (issue #9): diagonal movement
+        /// still moves along both axes, but the displayed facing collapses
+        /// to left/right since only the four cardinal facings exist. Pure
+        /// single-axis (cardinal) intent is unaffected and keeps its
+        /// existing behavior.
         /// </summary>
         public static FacingDirection Resolve(FacingDirection current, float intentX, float intentY)
         {
-            if (intentY > 0f)
-            {
-                return FacingDirection.North;
-            }
-
-            if (intentY < 0f)
-            {
-                return FacingDirection.South;
-            }
-
             if (intentX > 0f)
             {
                 return FacingDirection.East;
@@ -38,6 +35,16 @@ namespace BabyFarmer.Domain
             if (intentX < 0f)
             {
                 return FacingDirection.West;
+            }
+
+            if (intentY > 0f)
+            {
+                return FacingDirection.North;
+            }
+
+            if (intentY < 0f)
+            {
+                return FacingDirection.South;
             }
 
             return current;
