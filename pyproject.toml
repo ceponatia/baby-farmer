@@ -1,0 +1,11 @@
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+# Explicit, version-independent rule set for the CI lint gate (see #12).
+# E4/E7/E9/F: ruff's historical implicit defaults (pyflakes + a subset of
+# pycodestyle). I: isort-style import sorting. PIE: misc lint rules
+# (e.g. merging redundant startswith calls). EXE: shebang/executable-bit
+# consistency. Pinning this list here means a future ruff release changing
+# its own defaults cannot silently change what CI enforces.
+select = ["E4", "E7", "E9", "F", "I", "PIE", "EXE"]
