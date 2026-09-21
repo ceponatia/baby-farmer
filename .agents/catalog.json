@@ -85,7 +85,8 @@
           "Bash",
           "Edit",
           "Write",
-          "Skill"
+          "Skill",
+          "mcp__unity-mcp__*"
         ],
         "permissionMode": "default",
         "isolation": "worktree"
@@ -226,7 +227,8 @@
           "Bash",
           "Edit",
           "Write",
-          "Skill"
+          "Skill",
+          "mcp__unity-mcp__*"
         ],
         "permissionMode": "default",
         "isolation": "worktree"
@@ -332,7 +334,9 @@
           "Bash",
           "Edit",
           "Write",
-          "Skill"
+          "Skill",
+          "mcp__pixellab__*",
+          "mcp__unity-mcp__*"
         ],
         "permissionMode": "default",
         "isolation": "worktree"
@@ -361,7 +365,8 @@
           "Bash",
           "Edit",
           "Write",
-          "Skill"
+          "Skill",
+          "mcp__unity-mcp__*"
         ],
         "permissionMode": "default",
         "isolation": "worktree"
