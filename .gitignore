@@ -130,6 +130,10 @@ crashlytics-build.properties
 .codex/worktrees/
 .claude/worktrees/
 
+# Ad hoc pipeline/connectivity test output (e.g. PixelLab MCP smoke tests).
+# Unaccepted, not a source of truth, and never imported as project art.
+/test-output/
+
 # -----------------------------------------------------------------------------
 # Python tooling
 # -----------------------------------------------------------------------------
