@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  agent-kit:
+    name: Agent-kit lint, typecheck, and tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install lint/typecheck tooling
+        run: pip install "ruff>=0.6" "mypy>=1.11"
+
+      - name: Lint (ruff)
+        run: ruff check scripts/
+
+      - name: Typecheck (mypy)
+        run: mypy scripts/sync_agents.py scripts/tests/test_sync_agents.py
+
+      - name: Check generated agent files are current
+        run: python scripts/sync_agents.py --check
+
+      - name: Run agent-kit tests
+        run: python -m unittest discover -s scripts/tests -v
+
+# Unity game-code CI (compiling Assets/Scripts and running EditMode/PlayMode
+# tests in GitHub Actions) is intentionally excluded from this workflow.
+# It requires a Unity license/activation secret and cost decision that is an
+# unresolved, separately-authorized prerequisite (see
+# docs/08-quality-and-testing.md and docs/09-budget-licensing-and-risk.md).
+# A distinct follow-up task/decision issue should cover it.
