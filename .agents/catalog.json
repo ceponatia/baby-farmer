@@ -28,7 +28,9 @@
           "Write",
           "Agent",
           "SendMessage",
-          "Skill"
+          "Skill",
+          "mcp__Claude_Browser__*",
+          "mcp__ccd_view__show_pane"
         ],
         "permissionMode": "default",
         "isolation": null
