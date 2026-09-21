@@ -9,7 +9,7 @@
     ".claude/agents/farm-documentation-updater.md": "9684b878c2f25ba01784caa33aa59f946c40d597dfd8c7f08345ff2653d10eb1",
     ".claude/agents/farm-general-coder.md": "656df90bb89855e00904fe8655a1accb9295234ad54fe480e74e5d5d904a0c83",
     ".claude/agents/farm-issue-filer.md": "12c0bd60e76b3d12c85d003a8e5061e2bc26b0868f3d2c222440d4f203b673b3",
-    ".claude/agents/farm-orchestrator.md": "6f7bb5459822020fa9f6816efcc24b04415385fda50f757e877049e85dc36695",
+    ".claude/agents/farm-orchestrator.md": "d42e117a9834980e5cccf8c4800bc76292dc71bb4545cbce4cf96d55aa3dfb2c",
     ".claude/agents/farm-pr-manager.md": "e8fbdf36791b723cdf3afb5c6f46bc902194a5a2710bd4cb1753c48222d8a5bc",
     ".claude/agents/farm-reader.md": "88bcdbf87ad4cb7ab565b5b5d244e32352d35a0f33d5491d302cd4737e648915",
     ".claude/agents/farm-reviewer.md": "d32038bfc44e34ecf89ecac7b7e2168993bc5ff86915a6be3d2fa1d3b9d8b850",

@@ -2,7 +2,7 @@
 name: "farm-orchestrator"
 description: "Coordinate an authorized GitHub issue from discovery through bounded implementation, independent review, and PR handoff. Top-level role only; not a generic worker or a background daemon."
 model: "sonnet"
-tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write", "Agent", "SendMessage", "Skill"]
+tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write", "Agent", "SendMessage", "Skill", "mcp__Claude_Browser__*", "mcp__ccd_view__show_pane"]
 permissionMode: "default"
 maxTurns: 48
 skills: ["farm-orchestrate"]
