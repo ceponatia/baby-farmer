@@ -2,7 +2,7 @@
 name: "farm-asset-integrator"
 description: "Validate and integrate approved pixel-art, animation, UI, or audio assets against an asset issue and import contract. Technical pipeline work, not subjective art acceptance or unapproved generation spending."
 model: "sonnet"
-tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write", "Skill"]
+tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write", "Skill", "mcp__pixellab__*"]
 permissionMode: "default"
 maxTurns: 28
 skills: ["farm-assets"]

@@ -3,7 +3,7 @@
   "files": {
     ".claude/agents/farm-advanced-coder.md": "294c8ae5fc8b4f1aa9cfac388e65be1f5fbffcc8f506a2d5da398ae144937504",
     ".claude/agents/farm-architect.md": "61cb7bb85733c2c65aa27002ceae6502e065d117a7e5be230313d5b58bf3a254",
-    ".claude/agents/farm-asset-integrator.md": "805d53d0660d5dd3fd1eaad2d104453e69f6d07a3fbe195d28e306f3cdf7cba7",
+    ".claude/agents/farm-asset-integrator.md": "a2f65d901b57f3d97f3a073976cc09a6d44b47dc52e47e145b44f3ca037f200b",
     ".claude/agents/farm-ci-investigator.md": "5af49d662b9469c86d493c6217442e5d3dd5401a78748d04d8a7551943ecb405",
     ".claude/agents/farm-deep-rescue.md": "3f0e8752c8e45a8b89725ca4222583b0eb051344af6d7909736b6dd0403b57e5",
     ".claude/agents/farm-documentation-updater.md": "9684b878c2f25ba01784caa33aa59f946c40d597dfd8c7f08345ff2653d10eb1",
