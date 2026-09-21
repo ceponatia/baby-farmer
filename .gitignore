@@ -5,6 +5,11 @@
 # under source control. Meta files associated with generated/ignored files
 # may be ignored alongside those files.
 
+# -----------------------------------------------------------------------------
+# Test data
+# -----------------------------------------------------------------------------
+
+/test-output/
 
 # -----------------------------------------------------------------------------
 # Unity generated/local state
