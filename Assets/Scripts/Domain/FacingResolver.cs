@@ -50,6 +50,33 @@ namespace BabyFarmer.Domain
             return current;
         }
 
+        /// <summary>
+        /// Integer one-cell step for a facing, as plain (x, y) components
+        /// (issue #21). This is the discrete counterpart of
+        /// <see cref="ToUnitVector"/>: use it to move between
+        /// <see cref="FarmCell"/> coordinates, and use
+        /// <see cref="ToUnitVector"/> for continuous world maths. They are
+        /// intentionally separate — quantizing a continuous forward step back
+        /// into cell space is boundary-sensitive, so cell-space movement
+        /// never goes through the float vector.
+        /// </summary>
+        public static (int X, int Y) ToCellStep(FacingDirection facing)
+        {
+            switch (facing)
+            {
+                case FacingDirection.North:
+                    return (0, 1);
+                case FacingDirection.South:
+                    return (0, -1);
+                case FacingDirection.East:
+                    return (1, 0);
+                case FacingDirection.West:
+                    return (-1, 0);
+                default:
+                    return (0, 0);
+            }
+        }
+
         /// <summary>Unit direction vector for a facing, as plain (x, y) components.</summary>
         public static (float X, float Y) ToUnitVector(FacingDirection facing)
         {

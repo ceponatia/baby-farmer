@@ -76,5 +76,31 @@ namespace BabyFarmer.Domain.Tests
             Assert.AreEqual((1f, 0f), FacingResolver.ToUnitVector(FacingDirection.East));
             Assert.AreEqual((-1f, 0f), FacingResolver.ToUnitVector(FacingDirection.West));
         }
+
+        [Test]
+        public void ToCellStep_ReturnsIntegerCardinalSteps()
+        {
+            // The discrete counterpart of ToUnitVector (issue #21): the same
+            // Y-means-world-Z convention, but integer cell steps.
+            Assert.AreEqual((0, 1), FacingResolver.ToCellStep(FacingDirection.North));
+            Assert.AreEqual((0, -1), FacingResolver.ToCellStep(FacingDirection.South));
+            Assert.AreEqual((1, 0), FacingResolver.ToCellStep(FacingDirection.East));
+            Assert.AreEqual((-1, 0), FacingResolver.ToCellStep(FacingDirection.West));
+        }
+
+        [TestCase(FacingDirection.North)]
+        [TestCase(FacingDirection.South)]
+        [TestCase(FacingDirection.East)]
+        [TestCase(FacingDirection.West)]
+        public void ToCellStep_AgreesWithToUnitVectorOnEveryFacing(FacingDirection facing)
+        {
+            // The two representations must never drift apart: a facing that
+            // moves east continuously must also step east in cell space.
+            var (unitX, unitY) = FacingResolver.ToUnitVector(facing);
+            var (stepX, stepY) = FacingResolver.ToCellStep(facing);
+
+            Assert.AreEqual(unitX, (float)stepX, $"Cell step X disagrees with unit vector X for {facing}.");
+            Assert.AreEqual(unitY, (float)stepY, $"Cell step Y disagrees with unit vector Y for {facing}.");
+        }
     }
 }
